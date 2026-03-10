@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kesavan | AI ML Engineer</title>
+    <link rel="icon" href="img/k7.png">
+    <link rel="stylesheet" href="style.css?v=20260226-2">
+    <!-- Optimized Fonts - Reduced from 5 to 3 families with font-display swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Ubuntu+Mono&family=Space+Grotesk:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="home-theme"> <!-- Default to home theme (Dark) -->
+
+    <!-- Common Elements -->
+    <button class="back-btn" id="back-btn" aria-label="Go back to home" type="button">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+        <span class="sr-only">Back</span>
+    </button>
+
+    <!-- Main Views Container -->
+    <div id="views-container">
+
+        <!-- HOME VIEW (White Theme) -->
+        <section id="home-view" class="view active-view">
+            <!-- Top Header -->
+            <div class="left-logo"><img src="img/logo.png" alt="Codex7 Logo"></div>
+            <a class="header-sayhi"
+                href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=kesavan57kesavan@gmail.com&su=Portfolio%20Enquiry"
+                target="_blank" rel="noopener noreferrer" aria-label="Send email to Kesavan via Gmail">Ping Me..</a>
+
+            <div class="back-btn" id="back-circle-btn" style="display:none;"><i class="fas fa-arrow-left"></i></div>
+
+            <!-- Left Sidebar -->
+            <nav class="left-sidebar" aria-label="Main navigation">
+                <div class="nav-vertical"
+                    onclick="window.open('https://drive.google.com/file/d/1PYUaPT57Ug72vr15aKuLj_nuZRDa-M_0/view?usp=drive_link')"
+                    role="button" tabindex="0" aria-label="View resume">
+                    Resume</div>
+
+                <div class="social-stack" role="list" aria-label="Social media links">
+                    <i class="fab fa-linkedin" onclick="window.open('https://www.linkedin.com/in/7kesavan/')"
+                        role="button" tabindex="0" aria-label="LinkedIn profile"></i>
+                    <i class="fab fa-github" onclick="window.open('https://github.com/iam-k7')" role="button"
+                        tabindex="0" aria-label="GitHub profile"></i>
+                    <i class="fa-brands fa-twitter" onclick="window.open('https://twitter.com')" role="button"
+                        tabindex="0" aria-label="Twitter profile"></i>
+                    <i class="fab fa-youtube" onclick="window.open('https://youtube.com')" role="button" tabindex="0"
+                        aria-label="YouTube channel"></i>
+                    <i class="fa-brands fa-whatsapp" onclick="window.open('https://facebook.com')" role="button"
+                        tabindex="0" aria-label="WhatsApp contact"></i>
+                </div>
+                <div class="vertical-line"></div>
+            </nav>
+
+            <!-- Right Sidebar -->
+            <div class="right-sidebar">
+                <div class="nav-vertical" onclick="changeView('projects')">Projects</div>
+            </div>
+
+            <!-- Center -->
+            <canvas class="Center-particals" id="portal-canvas" aria-hidden="true"></canvas>
+            <div class="center-hub">
+                    <span class="hint">Click Sphere</span>
+            </div>
+
+            <!-- Bottom Nav -->
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="changeView('certifications')">Certifications</div>
+                <div class="nav-item" onclick="changeView('skills')">Skills</div>
+            </div>
+        </section>
+
+
+        <!-- ABOUT VIEW (Dark Theme) -->
+        <section id="about-view" class="view">
+            <canvas id="about-canvas"></canvas>
+            <div class="watermark-text about-watermark">EXPERIENCE</div>
+
+            <div class="about-journey">
+                <div class="about-track">
+                    <article class="about-track-row">
+                        <div class="about-info-card">
+                            <h2>Zoho Corporation</h2>
+                            <h3>Software Developer</h3>
+                            <p class="about-card-date">2023 - Present</p>
+                            <p class="about-card-location">Chennai, Tamil Nadu, India · On-site</p>
+                            <span class="about-card-badge">FULL-TIME</span>
+                            <div class="about-skill-pills">
+                                <span>UI/UX Design</span>
+                                <span>Frontend Development</span>
+                                <span>Full-Stack Build</span>
+                                <span>DSA</span>
+                            </div>
+                        </div>
+                        <div class="about-photo-stage">
+                            <img src="img/k7.png" alt="Kesavan portrait">
+                        </div>
+                    </article>
+
+                    <article class="about-track-row">
+                        <div class="about-info-card">
+                            <h2>AI / ML Engineering</h2>
+                            <h3>Experimenting With New Ideas</h3>
+                            <p class="about-card-date">Continuous Learning Journey</p>
+                            <p class="about-card-location">Applied AI, Prompting, Automation · Research Driven</p>
+                            <span class="about-card-badge">BUILDER</span>
+                            <div class="about-skill-pills">
+                                <span>Machine Learning</span>
+                                <span>LLMs</span>
+                                <span>FastAPI</span>
+                                <span>Prompt Engineering</span>
+                            </div>
+                        </div>
+                        <div class="about-photo-stage">
+                            <img src="img/k7.png" alt="Kesavan portrait">
+                        </div>
+                    </article>
+
+                    <article class="about-track-row">
+                        <div class="about-info-card">
+                            <h2>Curious Creator</h2>
+                            <h3>Robotics, Music, And Technology</h3>
+                            <p class="about-card-date">Since Childhood</p>
+                            <p class="about-card-location">Tech Savvy Mindset · Creative + Analytical</p>
+                            <span class="about-card-badge">LIFELONG LEARNER</span>
+                            <div class="about-skill-pills">
+                                <span>Robotics</span>
+                                <span>Piano</span>
+                                <span>Crypto</span>
+                                <span>Enterprise Software</span>
+                            </div>
+                        </div>
+                        <div class="about-photo-stage">
+                            <img src="img/k7.png" alt="Kesavan portrait">
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- SKILLS VIEW (Light Theme) -->
+        <section id="skills-view" class="view">
+            <canvas class="background-animation" id="particle-canvas"></canvas>
+            <div class="watermark-text">Skills</div>
+
+            <div class="skills-container">
+                <!-- Card 1 -->
+                <div class="skill-card">
+                    <div class="card-icon"><i class="fa-solid fa-laptop-file"></i></div>
+                    <h2>AI Engineer</h2>
+                    <p>I enjoy writing clean code and creating useful products.</p>
+
+                    <div class="card-section">
+                        <h3>I LIKE TO CODE IN</h3>
+                        <p>Python, Data Preprocessing, TensorFlow, ML/DL, LLMs, Prompt Engineering, FastAPI, RAG, LangChain, MySQL, AWS</p>
+                    </div>
+
+                    <div class="card-section">
+                        <h3>TOOLS</h3>
+                        <ul>
+                            <li>VS Code</li>
+                            <li>Jupyter</li>
+                            <li>Pycharm</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="skill-card">
+                    <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
+                    <h2>MLOops</h2>
+                    <p>Automating ML pipelines with MLOps, building smart workflows to optimize processes, integrate tools, and improve productivity.</p>
+
+                    <div class="card-section">
+                        <h3>SKILLS</h3>
+                        <p>Python, Docker, Kubernetes, CI/CD, MLflow, AWS </p>
+                    </div>
+
+                    <div class="card-section">
+                        <h3>TOOLS</h3>
+                        <p>Cursor, codexIDE, Antigravity, ChatGPT,..</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="skill-card">
+                    <div class="card-icon"><i class="fas fa-palette"></i></div>
+                    <h2>Frontend</h2>
+                    <p>Designing responsive, user-friendly interfaces using modern frontend technologies to create visually appealing and high-performance web experiences.</p>
+
+                    <div class="card-section">
+                        <h3>SKILLS</h3>
+                        <p>HTML, CSS, Java script(Basics), Figma. </p>
+                    </div>
+
+                    <div class="card-section">
+                        <h3>TOOLS</h3>
+                        <p>VS Code, Pycharm, AI-Enhanced UI,..</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PROJECTS VIEW (Dark Theme - Work) -->
+        <section id="projects-view" class="view">
+            <canvas class="project-animation" id="skills-canvas"></canvas>
+            <div class="watermark-text work-watermark">WORK</div>
+
+            <div class="card-carousel" id="project-carousel">
+
+                <article class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front project-face">
+                            <h3>OpenCV 20+ Projects</h3>
+                            <p>Users can set passwords using images and their sequence using this project, which
+                                implements the same concept for password authentication as recaptcha (checks for Human). I
+                                have presented the Live Demo for Smart India Hackathon</p>
+                        </div>
+                        <div class="flip-card-back project-face project-back-face">
+                            <div class="card-preview">
+                                <div class="preview-placeholder">
+                                    <img src="certificate/cv.png" alt="Project preview image">
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span>#Python</span>
+                                <span>#ML/DL</span>
+                                <span>#opencv</span>
+                                <span>#CNN&RNN</span>
+                            </div>
+                            <div class="card-footer">
+                                <button class="visit-btn" type="button"
+                                    onclick="window.open('https://github.com/iam-k7/OpenCV_20-_Projects')">Visit</button>
+                                <i class="fab fa-github card-icon" onclick="window.open('https://github.com/iam-k7')"
+                                    role="button" tabindex="0" aria-label="Open GitHub repository"></i>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front project-face">
+                            <h3>Veritasvoice</h3>
+                            <p>VeritasVoice Pro is an AI-powered audio forensics system that analyzes voice recordings, detects deepfake or manipulated audio, and provides intelligent insights using machine learning techniques.</p>
+                        </div>
+                        <div class="flip-card-back project-face project-back-face">
+                            <div class="card-preview">
+                                <div class="preview-placeholder">
+                                    <img src="certificate/cv.png" alt="Project preview image">
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span>#Python</span>
+                                <span>#FastAPI</span>
+                                <span>#Google-generativeai</span>
+                            </div>
+                            <div class="card-footer">
+                                <button class="visit-btn" type="button"
+                                    onclick="window.open('https://github.com/iam-k7/veritasvoice-pro---ai-audio-forensics--1-')">Visit</button>
+                                <i class="fab fa-github card-icon" onclick="window.open('https://github.com/iam-k7')"
+                                    role="button" tabindex="0" aria-label="Open GitHub repository"></i>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front project-face">
+                            <h3>ML - Intern</h3>
+                            <p>Machine Learning Intern repository showcasing practical ML tasks including regression, classification, clustering, data preprocessing, model training, evaluation, and real-world problem solving using Python.</p>
+                        </div>
+                        <div class="flip-card-back project-face project-back-face">
+                            <div class="card-preview">
+                                <div class="preview-placeholder">
+                                    <img src="certificate/cv.png" alt="Project preview image">
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span>#Python</span>
+                                <span>#pandas</span>
+                                <span>#sklearn</span>
+                            </div>
+                            <div class="card-footer">
+                                <button class="visit-btn" type="button"
+                                    onclick="window.open('https://github.com/iam-k7/veritasvoice-pro---ai-audio-forensics--1-')">Visit</button>
+                                <i class="fab fa-github card-icon" onclick="window.open('https://github.com/iam-k7')"
+                                    role="button" tabindex="0" aria-label="Open GitHub repository"></i>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front project-face">
+                            <h3>CodeX.ai</h3>
+                            <p>Codex7.ai is an AI-powered development project focused on intelligent automation, machine learning solutions, and modern web technologies to build scalable applications and smart digital tools.</p>
+                        </div>
+                        <div class="flip-card-back project-face project-back-face">
+                            <div class="card-preview">
+                                <div class="preview-placeholder">
+                                    <img src="certificate/cv.png" alt="Project preview image">
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span>#Python</span>
+                                <span>#WHISPER_MODEL=large-v3</span>
+                            </div>
+                            <div class="card-footer">
+                                <button class="visit-btn" type="button"
+                                    onclick="window.open('https://github.com/iam-k7/veritasvoice-pro---ai-audio-forensics--1-')">Visit</button>
+                                <i class="fab fa-github card-icon" onclick="window.open('https://github.com/iam-k7')"
+                                    role="button" tabindex="0" aria-label="Open GitHub repository"></i>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+           
+
+            </div>
+
+            <div class="swipe-footer">
+                <span>Swipe</span>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS VIEW (White Theme - Feats) -->
+        <section id="certifications-view" class="view">
+            <div class="bg-paper"><img src="img/news-paper.png" alt="Newspaper collage background"></div>
+            <div class="feat-bg">CERTIFICATIONS</div>
+
+            <div class="cert-grid-container" id="cert-grid">
+                <article class="cert-card">
+                    <div class="cert-image-container cert-brand-panel cert-brand-mineral">
+                        <div class="brand-mineral" aria-label="Mineral Drop logo">
+                            <span class="brand-mineral-main">MineralDr</span><span class="brand-mineral-drop">o</span><span
+                                class="brand-mineral-main">p</span>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <h3>Mineral Drop - Frontend Development Intern</h3>
+                        <p class="tags">#Netlify #GitHub #Godaddy #Firebase</p>
+                        <p class="sub-text">6 months long internship in Mineral Drop. Built production-level web designs.</p>
+                    </div>
+                </article>
+
+                <article class="cert-card">
+                    <div class="cert-image-container cert-brand-panel cert-brand-fashio">
+                        <div class="brand-fashio" aria-label="Fashioo logo strip">
+                            <span>FASHI<span class="brand-ring">O</span>O</span>
+                            <span>FASHI<span class="brand-ring">O</span>O</span>
+                            <span>FASHI<span class="brand-ring">O</span>O</span>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <h3>Fashioo.in - Frontend Development Intern</h3>
+                        <p class="tags">#HTML #CSS #Bootstrap #JavaScript</p>
+                        <p class="sub-text">Worked as a frontend developer in Netlify, GitHub workflows, SEO, and multimedia handling.</p>
+                    </div>
+                </article>
+
+                <article class="cert-card">
+                    <div class="cert-image-container cert-brand-panel cert-brand-geeks">
+                        <div class="brand-geeks" aria-label="Geeks for Geeks style visual">
+                            <span>G</span><span>e</span><span>G</span><span>e</span><span>G</span>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <h3>Gmail Login using Python Selenium</h3>
+                        <p class="tags">#GeeksForGeeks #Article #Python #Selenium</p>
+                        <p class="sub-text">Jul 14, 2020</p>
+                    </div>
+                </article>
+
+                <article class="cert-card">
+                    <div class="cert-image-container cert-brand-panel cert-brand-technamite">
+                        <div class="brand-technamite" aria-label="Technamite brand visual">
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <h3>I'm a content creator and Admin @technamite</h3>
+                        <p class="tags">#Instagram #Tech #Content #Admin</p>
+                        <p class="sub-text">23 Feb, 2020 - Present</p>
+                    </div>
+                </article>
+
+                <article class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="certificate/AWS.jpg" alt="AWS machine learning certificate">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Getting Started With AWS Machine Learning</h3>
+                        <p class="tags">#AWS #MachineLearning #Certificate</p>
+                        <p class="sub-text">Hands-on machine learning fundamentals using AWS learning resources.</p>
+                    </div>
+                </article>
+
+                <article class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="certificate/python.png" alt="Python certificate">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Python Programming Certificate</h3>
+                        <p class="tags">#Python #Programming #Certification</p>
+                        <p class="sub-text">Practical Python problem solving with a focus on fundamentals and implementation.</p>
+                    </div>
+                </article>
+
+                <article class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="certificate/genai.png" alt="Generative AI certificate">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Generative AI Fundamentals</h3>
+                        <p class="tags">#GenAI #LLM #AI</p>
+                        <p class="sub-text">Explored core concepts around generative models, AI workflows, and practical usage.</p>
+                    </div>
+                </article>
+
+                <article class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="certificate/ds&a.png" alt="Data structures and algorithms certificate">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Data Structures And Algorithms</h3>
+                        <p class="tags">#DSA #Algorithms #ProblemSolving</p>
+                        <p class="sub-text">Strengthened problem-solving patterns, core data structures, and algorithmic thinking.</p>
+                    </div>
+                </article>
+
+                <article class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="certificate/c++.jpg" alt="C plus plus certificate">
+                    </div>
+                    <div class="cert-info">
+                        <h3>C Plus Plus Programming Essentials</h3>
+                        <p class="tags">#CPlusPlus #Programming #CoreCS</p>
+                        <p class="sub-text">Covered structured programming, fundamentals, and language-level problem solving.</p>
+                    </div>
+                </article>
+
+                <article class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="certificate/cv.png" alt="Computer vision certificate">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Computer Vision Essentials</h3>
+                        <p class="tags">#ComputerVision #AI #Learning</p>
+                        <p class="sub-text">Built foundational understanding of image-based learning and applied AI workflows.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+
+    </div>
+
+    <script src="script.js?v=20260226-2" defer></script>
+</body>
+
+</html>
