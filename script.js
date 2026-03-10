@@ -24,12 +24,19 @@ function setBodyTheme(themeName, includeProjectsClass = false) {
     }
 }
 
+function setCertificationPageScroll(isEnabled) {
+    document.documentElement.classList.remove('certifications-page-scroll');
+    body.classList.remove('certifications-page-scroll');
+}
+
 function activateViewFallback(viewName) {
     const resolvedViewName = views[viewName] ? viewName : 'home';
     Object.values(views).forEach((el) => {
         if (!el) return;
         el.classList.toggle('active-view', el.id === `${resolvedViewName}-view`);
     });
+    setCertificationPageScroll(resolvedViewName === 'certifications');
+    window.scrollTo({ top: 0, behavior: 'auto' });
     if (resolvedViewName === 'home') {
         setBodyTheme('home-theme');
         setBackButtonVisible(false);
@@ -540,6 +547,7 @@ function changeView(viewName) {
     const resolvedViewName = views[viewName] ? viewName : 'home';
     const target = views[resolvedViewName];
     if (!target) return;
+    const isCertificationsView = resolvedViewName === 'certifications';
 
     // Find current active view to determine previous view
     let previousViewId = '';
@@ -553,6 +561,8 @@ function changeView(viewName) {
 
     // Show target
     target.classList.add('active-view');
+    setCertificationPageScroll(isCertificationsView);
+    window.scrollTo({ top: 0, behavior: 'auto' });
 
     // Handle Theme & UI
     if (resolvedViewName === 'home') {
@@ -580,8 +590,6 @@ function changeView(viewName) {
         // Certifications -> White Theme
         setBodyTheme('home-theme');
         setBackButtonVisible(true);
-        const certGridEl = document.getElementById('cert-grid');
-        if (certGridEl) certGridEl.scrollTop = 0;
     } else {
         // Skills -> Light
         setBodyTheme('light-theme');
@@ -596,86 +604,6 @@ function changeView(viewName) {
     }));
 }
 window.changeView = changeView;
-
-
-
-// --- Smooth Scroll Observer for Cert Cards ---
-const certGrid = document.getElementById('cert-grid');
-if (certGrid) {
-    const certView = document.getElementById('certifications-view');
-    let targetScrollTop = certGrid.scrollTop;
-
-    const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
-    const syncTargetScrollTop = () => {
-        targetScrollTop = certGrid.scrollTop;
-    };
-    const applyScrollDelta = (delta) => {
-        const maxScrollTop = Math.max(0, certGrid.scrollHeight - certGrid.clientHeight);
-        targetScrollTop = clamp(certGrid.scrollTop + delta, 0, maxScrollTop);
-        certGrid.scrollTop = targetScrollTop;
-        updateScrollProgress();
-    };
-    const updateScrollProgress = () => {
-        const maxScrollTop = Math.max(1, certGrid.scrollHeight - certGrid.clientHeight);
-        const progress = certGrid.scrollTop / maxScrollTop;
-        certGrid.style.setProperty('--cert-scroll-progress', progress.toFixed(4));
-    };
-
-    // Enable top-to-bottom scroll from anywhere inside certifications view.
-    if (certView) {
-        certView.addEventListener('wheel', (e) => {
-            if (!certView.classList.contains('active-view')) return;
-            if (certGrid.scrollHeight <= certGrid.clientHeight) return;
-
-            const delta = e.deltaMode === 1 ? e.deltaY * 20 : e.deltaY;
-            applyScrollDelta(delta);
-            e.preventDefault();
-        }, { passive: false });
-
-        certGrid.addEventListener('scroll', () => {
-            syncTargetScrollTop();
-            updateScrollProgress();
-        }, { passive: true });
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (!certView || !certView.classList.contains('active-view')) return;
-        if (certGrid.scrollHeight <= certGrid.clientHeight) return;
-
-        const maxScrollTop = certGrid.scrollHeight - certGrid.clientHeight;
-        const pageStep = Math.max(120, certGrid.clientHeight * 0.82);
-        let nextTarget = targetScrollTop;
-        let handled = true;
-
-        if (e.key === 'Home') {
-            nextTarget = 0;
-        } else if (e.key === 'End') {
-            nextTarget = maxScrollTop;
-        } else if (e.key === 'PageDown' || (e.key === ' ' && !e.shiftKey)) {
-            nextTarget += pageStep;
-        } else if (e.key === 'PageUp' || (e.key === ' ' && e.shiftKey)) {
-            nextTarget -= pageStep;
-        } else {
-            handled = false;
-        }
-
-        if (!handled) return;
-        targetScrollTop = clamp(nextTarget, 0, maxScrollTop);
-        certGrid.scrollTop = targetScrollTop;
-        updateScrollProgress();
-        e.preventDefault();
-    });
-
-    document.addEventListener('portfolio:viewchange', (event) => {
-        if (event.detail?.viewName === 'certifications') {
-            syncTargetScrollTop();
-            updateScrollProgress();
-        }
-    });
-
-    window.addEventListener('resize', updateScrollProgress, { passive: true });
-    updateScrollProgress();
-}
 
 
 
