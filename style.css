@@ -606,7 +606,7 @@ body.home-theme {
 }
 
 .about-journey {
-    position: relative;
+    position: absolute;
     z-index: 10;
     width: min(100%, 1320px);
     margin: 0 auto;
@@ -2436,18 +2436,21 @@ body.home-theme #back-btn {
     }
 
     .about-journey {
+        position: absolute;
         width: min(100%, 920px);
         padding: 12px 24px 28px;
     }
 
     .about-layout {
+        position: relative;
         grid-template-columns: 1fr;
         gap: 28px;
         min-height: auto;
     }
 
     .about-timeline-shell {
-        padding: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     .about-track {
@@ -2665,6 +2668,19 @@ body.home-theme #back-btn {
         position: absolute;
         left: 20px;
         top: 20%;
+    }
+
+    .bottom-nav {
+        position: absolute;
+        bottom: 80px;
+        width: 60%;
+        left: 20%;
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 1.2rem;
+        z-index: 10;
     }
 
     .social-stack {
