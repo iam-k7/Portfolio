@@ -617,7 +617,7 @@ if (canvas) {
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
-    const particleCount = 100; // Reduced from 200 for better performance
+    const particleCount = 200; // Reduced from 200 for better performance
     const colors = ['#00000091', '#454545c5', '#bababaff'];
     let mouse = { x: null, y: null };
     let isVisible = false;

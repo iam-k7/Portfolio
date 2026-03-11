@@ -569,7 +569,7 @@ body.home-theme {
 
 .about-avatar img {
     height: 90%;
-    max-height: 700px;
+    max-height: 650px;
     object-fit: contain;
     filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
     animation: floating 3s ease-in-out infinite;
@@ -585,151 +585,232 @@ body.home-theme {
 }
 
 #about-view .about-watermark {
+    --about-watermark-x: -6%;
     top: 34px;
     left: 50%;
     font-size: clamp(3rem, 8vw, 12rem);
-    transform: translateX(-6%);
+    transform: translateX(var(--about-watermark-x));
     color: rgba(255, 255, 255, 0.533);
     opacity: 1;
     letter-spacing: -4px;
     animation: watermarkGlow 10s ease-in-out infinite, aboutWatermarkFloat 8s ease-in-out infinite;
 }
 
+#about-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
 .about-journey {
     position: relative;
     z-index: 10;
-    width: 90%;
-    padding: 0 12px 20px;
+    width: min(100%, 1320px);
+    margin: 0 auto;
+    padding: 24px 40px 40px;
 }
 
-.about-journey::before {
-    content: '';
-    position: absolute;
-    top: -104px;
-    bottom: 0;
-    left: 50%;
-    width: 2px;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.78);
-    box-shadow: 0 0 16px rgba(255, 255, 255, 0.12);
+.about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(320px, 430px);
+    align-items: center;
+    gap: clamp(36px, 6vw, 92px);
+    min-height: calc(100vh - 190px);
+}
+
+.about-timeline-shell {
+    --about-line-position: 50%;
+    position: relative;
+    padding: 28px 0;
 }
 
 .about-track {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 34px;
+}
+
+.about-track::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: var(--about-line-position);
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.15));
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.14);
 }
 
 .about-track-row {
     display: grid;
-    grid-template-columns: minmax(620px, 790px) minmax(260px, 420px);
+    grid-template-columns: minmax(0, 1fr) 92px minmax(0, 1fr);
+    grid-template-areas: 'left node right';
     align-items: center;
-    justify-content: space-between;
-    gap: 88px;
-    min-height: 500px;
-}
-
-.about-info-card,
-.about-photo-stage {
-    position: relative;
+    column-gap: 24px;
+    min-height: 106px;
     opacity: 0;
-    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.9s ease;
+    transform: translateY(46px);
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
 }
 
-.about-info-card {
-    border-radius: 22px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(2, 5, 12, 0.92);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
-    overflow: hidden;
-    padding: 52px 44px 40px;
-    transform: translateX(-96px);
+.about-track-row.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about-entry {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 6px;
 }
 
-.about-photo-stage {
-    transform: translateX(96px);
+.about-entry-left {
+    grid-area: left;
+    text-align: right;
+}
+
+.about-entry-right {
+    grid-area: right;
+    text-align: left;
+}
+
+.about-timeline-node {
+    grid-area: node;
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 440px;
 }
 
-.about-track-row.is-visible .about-info-card,
-.about-track-row.is-visible .about-photo-stage {
-    opacity: 1;
-    transform: translateX(0);
+.about-timeline-node span {
+    width: 72px;
+    height: 72px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    color: #020202;
+    font-size: 1.9rem;
+    box-shadow: 0 10px 28px rgba(255, 255, 255, 0.14);
 }
 
-.about-info-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(40, 74, 160, 0.09) 0%, rgba(0, 0, 0, 0) 42%);
-    pointer-events: none;
-}
-
-.about-info-card h2 {
-    margin: 0 0 24px;
+.about-entry h2,
+.about-entry h3 {
+    margin: 0;
     color: #f4f5f7;
     font-family: var(--font-body);
-    font-size: clamp(3rem, 3.25vw, 4rem);
-    line-height: 1.02;
-}
-
-.about-info-card h3 {
-    margin: 0 0 16px;
-    color: rgba(255, 255, 255, 0.94);
-    font-family: var(--font-body);
-    font-size: clamp(1.9rem, 1.9vw, 2.35rem);
-    line-height: 1.15;
+    font-size: clamp(1.6rem, 2.1vw, 2.45rem);
+    line-height: 1.04;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .about-card-date,
 .about-card-location {
     margin: 0;
-    color: rgba(235, 240, 255, 0.9);
-    font-family: var(--font-mono);
-    font-size: clamp(1.2rem, 1.05vw, 1.42rem);
-    line-height: 1.55;
-}
-
-.about-card-date {
-    margin-bottom: 6px;
-}
-
-.about-card-location {
-    margin-bottom: 22px;
-    color: rgba(187, 193, 211, 0.72);
-    font-style: italic;
-}
-
-.about-card-badge {
-    display: inline-flex;
-    align-self: flex-start;
-    min-height: 40px;
-    align-items: center;
-    padding: 0 16px;
-    margin-bottom: 28px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(241, 244, 249, 0.92);
+    color: rgba(168, 171, 180, 0.72);
     font-family: var(--font-body);
-    font-size: 0.98rem;
-    font-weight: 700;
+    font-size: clamp(1rem, 1.2vw, 1.18rem);
+    line-height: 1.28;
 }
 
+.about-photo-stage {
+    position: sticky;
+    top: 108px;
+    justify-self: end;
+    width: min(100%, 430px);
+    min-height: 620px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
 
+.about-photo-orbit,
+.about-photo-glow,
+.about-photo-caption {
+    position: absolute;
+}
+
+.about-photo-orbit {
+    inset: 8% 6% 18%;
+    border-radius: 46% 54% 42% 58%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.12), transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(22, 90, 255, 0.18), transparent 42%);
+    transform: rotate(-12deg);
+}
+
+.about-photo-glow {
+    inset: 14% 10% 24%;
+    background: radial-gradient(circle, rgba(88, 145, 255, 0.26) 0%, rgba(88, 145, 255, 0.08) 42%, rgba(88, 145, 255, 0) 72%);
+    filter: blur(22px);
+}
 
 .about-photo-stage img {
-    width: min(100%, 360px);
-    max-height: 460px;
+    position: relative;
+    z-index: 2;
+    width: min(100%, 420px);
+    max-height: 620px;
     object-fit: contain;
-    filter: drop-shadow(0 26px 38px rgba(0, 0, 0, 0.48));
+    filter: drop-shadow(0 30px 44px rgba(0, 0, 0, 0.56));
 }
+
+.about-photo-caption {
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+    z-index: 3;
+    padding: 16px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(5, 8, 18, 0.62);
+    backdrop-filter: blur(10px);
+}
+
+.about-photo-name,
+.about-photo-role {
+    margin: 0;
+}
+
+.about-photo-name {
+    color: #f3f5fb;
+    font-family: var(--font-body);
+    font-size: 1.32rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.about-photo-role {
+    margin-top: 6px;
+    color: rgba(196, 202, 218, 0.8);
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+@keyframes aboutWatermarkFloat {
+    0%,
+    100% {
+        transform: translateX(var(--about-watermark-x)) translateY(0);
+    }
+
+    50% {
+        transform: translateX(var(--about-watermark-x)) translateY(-15px);
+    }
+}
+
+
+
+
 
 @keyframes floating {
 
@@ -2241,6 +2322,45 @@ body.home-theme #back-btn {
 
 /* Responsive for phone/tablet */
 @media (max-width: 1280px) {
+    #about-view {
+        padding-top: 96px;
+    }
+
+    #about-view .about-watermark {
+        --about-watermark-x: -12%;
+        left: 52%;
+        transform: translateX(var(--about-watermark-x));
+    }
+
+    .about-journey {
+        width: min(100%, 1100px);
+        padding-inline: 28px;
+    }
+
+    .about-layout {
+        grid-template-columns: minmax(0, 1.1fr) minmax(300px, 380px);
+        gap: 32px;
+    }
+
+    .about-track {
+        gap: 28px;
+    }
+
+    .about-track-row {
+        grid-template-columns: minmax(0, 1fr) 84px minmax(0, 1fr);
+    }
+
+    .about-timeline-node span {
+        width: 66px;
+        height: 66px;
+        font-size: 1.7rem;
+    }
+
+    .about-photo-stage img {
+        width: min(100%, 360px);
+        max-height: 560px;
+    }
+
     #projects-view {
         --project-card-gap: 24px;
         --project-card-inline-space: 54px;
@@ -2302,6 +2422,56 @@ body.home-theme #back-btn {
 }
 
 @media (max-width: 1024px) {
+    #about-view {
+        padding: 88px 0 40px;
+    }
+
+    #about-view .about-watermark {
+        --about-watermark-x: 0%;
+        top: 26px;
+        left: 26px;
+        transform: translateX(var(--about-watermark-x));
+        font-size: clamp(3.6rem, 13vw, 7rem);
+        letter-spacing: -2px;
+    }
+
+    .about-journey {
+        width: min(100%, 920px);
+        padding: 12px 24px 28px;
+    }
+
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        min-height: auto;
+    }
+
+    .about-timeline-shell {
+        padding: 0;
+    }
+
+    .about-track {
+        gap: 24px;
+    }
+
+    .about-track-row {
+        min-height: 94px;
+    }
+
+    .about-photo-stage {
+        position: relative;
+        top: auto;
+        justify-self: center;
+        width: min(100%, 360px);
+        min-height: 520px;
+        order: -1;
+    }
+
+    .about-photo-stage img {
+        width: min(100%, 340px);
+        max-height: 500px;
+    }
+
     #projects-view {
         --project-card-gap: 20px;
         --project-card-inline-space: 24px;
@@ -2395,7 +2565,96 @@ body.home-theme #back-btn {
     }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 768px) {
+    #about-view {
+        padding: 82px 0 32px !important;
+    }
+
+    #about-view .about-watermark {
+        --about-watermark-x: 0%;
+        top: 22px;
+        left: 16px;
+        font-size: clamp(2.6rem, 16vw, 4.8rem);
+        letter-spacing: -1px;
+    }
+
+    .about-journey {
+        padding: 8px 16px 20px;
+    }
+
+    .about-layout {
+        gap: 18px;
+    }
+
+    .about-timeline-shell {
+        --about-line-position: 28px;
+    }
+
+    .about-track-row {
+        grid-template-columns: 56px minmax(0, 1fr);
+        grid-template-areas:
+            'node left'
+            'node right';
+        align-items: start;
+        column-gap: 14px;
+        row-gap: 8px;
+        min-height: auto;
+        padding-block: 10px 12px;
+    }
+
+    .about-entry-left,
+    .about-entry-right {
+        text-align: left;
+    }
+
+    .about-track::before {
+        left: var(--about-line-position);
+    }
+
+    .about-timeline-node {
+        justify-content: flex-start;
+    }
+
+    .about-timeline-node span {
+        width: 52px;
+        height: 52px;
+        font-size: 1.25rem;
+    }
+
+    .about-entry h2,
+    .about-entry h3 {
+        font-size: clamp(1.15rem, 5.4vw, 1.65rem);
+    }
+
+    .about-card-date,
+    .about-card-location {
+        font-size: 0.96rem;
+    }
+
+    .about-photo-stage {
+        width: min(100%, 300px);
+        min-height: 420px;
+    }
+
+    .about-photo-stage img {
+        width: min(100%, 280px);
+        max-height: 390px;
+    }
+
+    .about-photo-caption {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        padding: 12px 14px;
+    }
+
+    .about-photo-name {
+        font-size: 1.05rem;
+    }
+
+    .about-photo-role {
+        font-size: 0.8rem;
+    }
 
     .left-logo img {
         width: 20%;
@@ -2495,11 +2754,11 @@ body.home-theme #back-btn {
     }
 
     #projects-view .flip-card {
-        width: var(--project-card-width);
-        height: 500px;
-        flex-basis: var(--project-card-width);
+        width: 300px;
+        height: 400px;
+        flex-basis: 250px;
         margin-right: 70px;
-        margin-top: 30%;
+        margin-top: 20%;
     }
 
     #skills-view {
@@ -2546,9 +2805,11 @@ body.home-theme #back-btn {
         scroll-snap-stop: always;
     }
 
+
+
     #projects-view .flip-card-front,
     #projects-view .flip-card-back {
-        padding: 30px 22px 24px;
+        padding: 20px 12px 14px;
         border-radius: 0 36px 0 36px;
     }
 
@@ -2682,3 +2943,4 @@ body.home-theme #back-btn {
     min-height: 0;
     max-height: none;
 }
+
